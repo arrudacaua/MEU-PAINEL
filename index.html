@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <title>Meu Painel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div>
+      <small>MEU ORGANIZADOR</small>
+      <h1>Meu Painel</h1>
+      <p>Treino · Água · Refeições · Cardio · Sono · Metas</p>
+    </div>
+    <button id="todayBtn" class="dark-btn">Hoje</button>
+  </header>
+
+  <nav>
+    <button class="tab active" data-page="inicio">🏠 Início</button>
+    <button class="tab" data-page="calendario">📅 Calendário</button>
+    <button class="tab" data-page="treino">🏋️ Treino</button>
+    <button class="tab" data-page="progresso">📊 Progresso</button>
+    <button class="tab" data-page="config">⚙️ Dados</button>
+  </nav>
+
+  <main>
+    <section id="inicio" class="page active">
+      <div class="hero">
+        <div>
+          <span id="selectedDateLabel"></span>
+          <h2 id="selectedWorkout"></h2>
+          <p id="selectedWorkoutSub"></p>
+        </div>
+        <div class="score-ring">
+          <strong id="dailyScore">0%</strong>
+          <small>do dia</small>
+        </div>
+      </div>
+
+      <div class="cards-3">
+        <div class="mini-stat"><small>🔥 Streak</small><b id="streakValue">0 dias</b></div>
+        <div class="mini-stat"><small>⚖️ Peso</small><b id="weightMini">—</b></div>
+        <div class="mini-stat"><small>😴 Sono</small><b id="sleepMini">—</b></div>
+      </div>
+
+      <div class="cards-2">
+        <div class="card">
+          <div class="row"><h3>💧 Água</h3><b id="waterText">0 / 2,2 L</b></div>
+          <div class="bar"><div id="waterBar"></div></div>
+          <div class="water-buttons">
+            <button data-water="250">+250</button>
+            <button data-water="500">+500</button>
+            <button data-water="750">+750</button>
+            <button data-water="1000">+1 L</button>
+          </div>
+          <button id="resetWater" class="ghost-btn">Zerar água</button>
+        </div>
+
+        <div class="card">
+          <h3>😴 Sono & peso</h3>
+          <label class="field-label">Horas de sono</label>
+          <input id="sleepHours" type="number" min="0" max="24" step="0.25" placeholder="Ex.: 7.5">
+          <label class="field-label">Peso corporal (kg)</label>
+          <input id="bodyWeight" type="number" min="0" step="0.1" placeholder="Ex.: 72.4">
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="row"><h3>❤️ Cardio</h3><b id="cardioStatus">0 min</b></div>
+        <div class="form-grid">
+          <div>
+            <label class="field-label">Tipo</label>
+            <select id="cardioType">
+              <option value="">Selecione</option>
+              <option>Caminhada</option>
+              <option>Esteira</option>
+              <option>Bicicleta</option>
+              <option>Corrida</option>
+              <option>Elíptico</option>
+              <option>Outro</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-label">Minutos</label>
+            <input id="cardioMinutes" type="number" min="0" placeholder="0">
+          </div>
+          <div>
+            <label class="field-label">Distância (km)</label>
+            <input id="cardioDistance" type="number" min="0" step="0.1" placeholder="0">
+          </div>
+          <div>
+            <label class="field-label">Intensidade</label>
+            <select id="cardioIntensity">
+              <option value="">Selecione</option>
+              <option>Leve</option>
+              <option>Moderada</option>
+              <option>Intensa</option>
+            </select>
+          </div>
+        </div>
+        <label class="checkline"><input id="walkCheck" type="checkbox"> 🚶 Fiz os 4 km de ida + volta da academia</label>
+      </div>
+
+      <div class="card">
+        <div class="row"><h3>🍽️ Refeições</h3><b id="mealSummary">0 / 4</b></div>
+        <div id="mealQuick"></div>
+      </div>
+
+      <div class="card">
+        <h3>✅ Hábitos do dia</h3>
+        <div class="habit-grid">
+          <label><input id="studyCheck" type="checkbox"> 📚 Estudei</label>
+          <label><input id="organizeCheck" type="checkbox"> 🧹 Me organizei</label>
+          <label><input id="workoutDoneCheck" type="checkbox"> 🏋️ Treino concluído</label>
+          <label><input id="sleepQualityCheck" type="checkbox"> 😴 Dormi bem</label>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>📝 Observações do dia</h3>
+        <textarea id="dailyNotes" placeholder="Como foi o dia? Algo importante?"></textarea>
+      </div>
+    </section>
+
+    <section id="calendario" class="page">
+      <div class="calendar-head">
+        <button id="prevMonth">‹</button>
+        <h2 id="monthTitle"></h2>
+        <button id="nextMonth">›</button>
+      </div>
+      <div class="weekdays">
+        <span>DOM</span><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SÁB</span>
+      </div>
+      <div id="calendarGrid" class="calendar-grid"></div>
+      <div class="legend">
+        <span><i class="dot complete"></i> Completo</span>
+        <span><i class="dot partial"></i> Parcial</span>
+        <span><i class="dot empty"></i> Sem registro</span>
+      </div>
+    </section>
+
+    <section id="treino" class="page">
+      <div class="date-strip">
+        <div>
+          <small>TREINO DO DIA</small>
+          <h2 id="workoutTitle"></h2>
+          <p id="workoutSub"></p>
+        </div>
+        <button id="finishWorkoutBtn">Concluir treino</button>
+      </div>
+      <div id="workoutContainer"></div>
+    </section>
+
+    <section id="progresso" class="page">
+      <div class="month-summary">
+        <small>PROGRESSO</small>
+        <h2 id="summaryMonth"></h2>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat"><b id="statWorkouts">0</b><small>treinos</small></div>
+        <div class="stat"><b id="statWater">0</b><small>metas de água</small></div>
+        <div class="stat"><b id="statMeals">0</b><small>dias 4/4 refeições</small></div>
+        <div class="stat"><b id="statCardio">0</b><small>min cardio</small></div>
+        <div class="stat"><b id="statAvgSleep">—</b><small>média sono</small></div>
+        <div class="stat"><b id="statAvgWeight">—</b><small>média peso</small></div>
+      </div>
+
+      <div class="card">
+        <h3>🎯 Metas desta semana</h3>
+        <div id="weeklyGoals"></div>
+      </div>
+
+      <div class="card">
+        <h3>📈 Consistência mensal</h3>
+        <div class="bar bigbar"><div id="consistencyBar"></div></div>
+        <p id="consistencyText" class="muted"></p>
+      </div>
+
+      <div class="card">
+        <h3>🏆 Melhores dias</h3>
+        <div id="bestDays"></div>
+      </div>
+
+      <div class="card">
+        <h3>🏋️ Histórico de exercícios</h3>
+        <select id="historyExercise"></select>
+        <div id="exerciseHistory" class="history-list"></div>
+      </div>
+    </section>
+
+    <section id="config" class="page">
+      <div class="card">
+        <h3>💾 Backup dos dados</h3>
+        <p class="muted">Exporte seus registros antes de trocar de navegador ou limpar dados.</p>
+        <div class="config-buttons">
+          <button id="exportBtn" class="dark-btn">Exportar backup</button>
+          <label class="upload-btn">Importar backup<input id="importInput" type="file" accept=".json,application/json"></label>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>🎯 Metas semanais</h3>
+        <div class="form-grid">
+          <div><label class="field-label">Treinos</label><input id="goalWorkouts" type="number" min="0"></div>
+          <div><label class="field-label">Cardio (min)</label><input id="goalCardio" type="number" min="0"></div>
+          <div><label class="field-label">Água (dias)</label><input id="goalWater" type="number" min="0" max="7"></div>
+          <div><label class="field-label">Refeições completas (dias)</label><input id="goalMeals" type="number" min="0" max="7"></div>
+        </div>
+        <button id="saveGoals" class="dark-btn full">Salvar metas</button>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
