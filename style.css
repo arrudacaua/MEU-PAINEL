@@ -48,3 +48,13 @@ input[type=checkbox]{width:19px;height:19px;accent-color:#111827}
 .best-day,.history-item{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}.best-day:last-child,.history-item:last-child{border:0}.history-item small{color:var(--muted)}
 .history-list{margin-top:10px}.config-buttons{display:flex;gap:8px;flex-wrap:wrap}.upload-btn{background:#f3f4f6;padding:10px 15px;border-radius:11px;font-weight:800;cursor:pointer}.upload-btn input{display:none}.full{width:100%;margin-top:12px}
 @media(max-width:620px){nav{grid-template-columns:repeat(5,1fr)}nav .tab{font-size:10px}.cards-2,.cards-3,.stat-grid{grid-template-columns:1fr 1fr}.form-grid{grid-template-columns:1fr}.meal-row{grid-template-columns:24px 95px 1fr}.daycell{min-height:66px;padding:6px}.habit-grid{grid-template-columns:1fr}.top h1{font-size:25px}.date-strip{align-items:flex-start;gap:10px}.date-strip button{font-size:11px}}
+
+
+html { background: #f3f4f6; }
+body {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+@media (display-mode: standalone) {
+  .app { min-height: 100vh; }
+}

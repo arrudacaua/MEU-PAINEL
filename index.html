@@ -4,15 +4,22 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#111827">
-  <title>Meu Painel</title>
+  <title>Meu Painel V2</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Meu Painel">
+  <meta name="mobile-web-app-capable" content="yes">
+
 </head>
 <body>
 <div class="app">
   <header class="top">
     <div>
       <small>MEU ORGANIZADOR</small>
-      <h1>Meu Painel</h1>
+      <h1>Meu Painel V2</h1>
       <p>Treino · Água · Refeições · Cardio · Sono · Metas</p>
     </div>
     <button id="todayBtn" class="dark-btn">Hoje</button>
@@ -216,5 +223,14 @@
   </main>
 </div>
 <script src="script.js"></script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(err => console.log("Service Worker:", err));
+  });
+}
+</script>
+
 </body>
 </html>
